@@ -13,3 +13,8 @@
 
 /OpenWorld.Services/bin
 /OpenWorld.Services/obj
+
+.suo
+/.vs/OpenWorld/v15/*.suo
+/OpenWorld/obj/Debug/netcoreapp2.1/OpenWorld.assets.cache
+/OpenWorld.Services/obj/Debug/netstandard2.0/OpenWorld.Services.assets.cache
