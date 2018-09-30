@@ -3,3 +3,13 @@
 ################################################################################
 
 /.vs/OpenWorld/v15/Server/sqlite3
+
+/OpenWorld/bin/
+/OpenWorld/obj/
+
+/OpenWorld.Data/bin
+/OpenWorld.Data/obj
+
+
+/OpenWorld.Services/bin
+/OpenWorld.Services/obj

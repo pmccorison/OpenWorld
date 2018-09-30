@@ -7,3 +7,11 @@ C:\Users\hollo\Documents\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.
 C:\Users\hollo\Documents\OpenWorld.Data\bin\Debug\netstandard2.0\OpenWorld.Data.pdb
 C:\Users\hollo\Documents\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.dll
 C:\Users\hollo\Documents\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.pdb
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\bin\Debug\netstandard2.0\OpenWorld.Data.deps.json
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\bin\Debug\netstandard2.0\OpenWorld.Data.dll
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\bin\Debug\netstandard2.0\OpenWorld.Data.pdb
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.csproj.CoreCompileInputs.cache
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.AssemblyInfoInputs.cache
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.AssemblyInfo.cs
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.dll
+C:\Users\hollo\Documents\OpenWorld\OpenWorld.Data\obj\Debug\netstandard2.0\OpenWorld.Data.pdb
