@@ -44,8 +44,9 @@ namespace OpenWorld.Services.Services.StateManagers
             state.LocY = 0;
             state.LocZ = 0;
 
-            if(!_ConnectedPlayers.TryAdd(connectionId, state) || !_ConnectionIdLookup.TryAdd(playerId, connectionId))
+            if(!_ConnectedPlayers.TryAdd(playerId, state) || !_ConnectionIdLookup.TryAdd(connectionId, playerId))
             {
+                _ConnectedPlayers.TryRemove(connectionId, out var deletedstate);
                 throw new PlayerConnectionException("Something went wrong registering the user", ConnectionErrorType.RegistrationError);
             }
 
@@ -65,14 +66,19 @@ namespace OpenWorld.Services.Services.StateManagers
 
         public void UpdatePlayer(PlayerState playerState)
         {
-            //throw new NotImplementedException();
+            _ConnectedPlayers.TryGetValue(playerState.PlayerId, out var existingPlayer);
+
+            existingPlayer.LocX = playerState.LocX;
+            existingPlayer.LocY = playerState.LocY;
+            existingPlayer.LocZ = playerState.LocZ;
         }
 
         private async void BroadcastMethod(object x)
         {
             try
             {
-                await m_PlayerEventHub.Clients.All.SendAsync("RecieveClientData", _ConnectedPlayers);
+                var array = _ConnectedPlayers.ToList().Select(p => p.Value).ToList();
+                await m_PlayerEventHub.Clients.All.SendAsync("RecieveClientData", array);
             }
             catch
             {

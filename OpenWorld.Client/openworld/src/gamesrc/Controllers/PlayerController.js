@@ -1,5 +1,5 @@
 import InputHandler from '../controllers/KeyHandler.js'
-import PlayerEventChannel from '../eventchannels/PlayerEventChannel.js'
+import PlayerEventChannel from '../eventchannels/PlayerEventChannel'
 
 function PlayerController(playerPawn){
     var self = this;
@@ -7,25 +7,24 @@ function PlayerController(playerPawn){
     self.movementSpeed = 0.35;
 
     self.PlayerPawn = playerPawn;
-
-    PlayerEventChannel.Connect("Test123");
 };
 
 PlayerController.prototype.Update = function(delta){
     var self = this;
 
     if(InputHandler.IsKeyDown(38)){
-        self.PlayerPawn.PosY -= self.movementSpeed * delta;
+        self.PlayerPawn.LocY -= self.movementSpeed * delta;
     }
     if(InputHandler.IsKeyDown(40)){
-        self.PlayerPawn.PosY += self.movementSpeed * delta;
+        self.PlayerPawn.LocY += self.movementSpeed * delta;
     }
     if(InputHandler.IsKeyDown(39)){
-        self.PlayerPawn.PosX += self.movementSpeed * delta;
+        self.PlayerPawn.LocX += self.movementSpeed * delta;
     }
     if(InputHandler.IsKeyDown(37)){
-        self.PlayerPawn.PosX -= self.movementSpeed * delta;
+        self.PlayerPawn.LocX -= self.movementSpeed * delta;
     }
+    PlayerEventChannel.UpdateCurrentPlayerPosition(self.PlayerPawn.LocX, self.PlayerPawn.LocY, self.PlayerPawn.LocZ);
 };
 
 window.addEventListener('keydown', function(event){

@@ -3,6 +3,7 @@ import PlayerPawn from '../gamesrc/objects/PlayerPawn.js'
 import InputHandler from '../gamesrc/controllers/KeyHandler.js'
 import ObjectIdGenerator from '../gamesrc/ObjectIdGenerator.js'
 import PlayerController from './controllers/PlayerController.js';
+import PlayerEventChannel from './eventchannels/PlayerEventChannel'
 
 function GameRoot(canvasId){
     var self = this;
@@ -20,14 +21,7 @@ function GameRoot(canvasId){
 
     self.canvas = document.getElementById(canvasId);
     self.canvasContext = self.canvas.getContext("2d");
-
-    self.Level = new Level();
-
-    var currentPlayerPawn = new PlayerPawn(ObjectIdGenerator.GenerateId());
-
-    self.PlayerController = new PlayerController(currentPlayerPawn);
-
-    self.Level.AddChild(currentPlayerPawn);
+    self.networkObjectController = null;
 }
 
 GameRoot.prototype.__Update = function(delta) {
@@ -64,22 +58,38 @@ GameRoot.prototype.__End = function(fps) {
     
 }
 
-GameRoot.prototype.Start = function(){
+GameRoot.prototype.Start = function(playerId){
     var self = this;
 
-    if (!self.started) {
-        self.started = true;
-        self.frameID = requestAnimationFrame(function(timestamp) {
-            self.__Draw(1);
-            self.running = true;
-            self.lastFrameTimeMs = timestamp;
-            self.lastFpsUpdate = timestamp;
-            self.framesThisSecond = 0;
-            self.frameID = requestAnimationFrame(function(newTimestamp){
-                self.__MainLoop(newTimestamp);
-            });
-        });
-    }
+    return new Promise(function(resolve, reject){
+        PlayerEventChannel.Connect(playerId).then(function(){
+            self.Level = new Level();
+    
+            var currentPlayerPawn = new PlayerPawn(ObjectIdGenerator.GenerateId(), playerId);
+        
+            self.PlayerController = new PlayerController(currentPlayerPawn);
+        
+            self.Level.AddChild(currentPlayerPawn);
+
+            resolve();
+        
+            if (!self.started) {
+                self.started = true;
+                self.frameID = requestAnimationFrame(function(timestamp) {
+                    self.__Draw(1);
+                    self.running = true;
+                    self.lastFrameTimeMs = timestamp;
+                    self.lastFpsUpdate = timestamp;
+                    self.framesThisSecond = 0;
+                    self.frameID = requestAnimationFrame(function(newTimestamp){
+                        self.__MainLoop(newTimestamp);
+                    });
+                });
+            }
+        }).catch(function(error){
+            reject(error);
+        });    
+    });    
 }
 
 GameRoot.prototype.Stop = function() {
