@@ -1,4 +1,5 @@
-import InputHandler from '../Controllers/KeyHandler.js'
+import InputHandler from '../controllers/KeyHandler.js'
+import PlayerEventChannel from '../eventchannels/PlayerEventChannel.js'
 
 function PlayerController(playerPawn){
     var self = this;
@@ -6,6 +7,8 @@ function PlayerController(playerPawn){
     self.movementSpeed = 0.35;
 
     self.PlayerPawn = playerPawn;
+
+    PlayerEventChannel.Connect("Test123");
 };
 
 PlayerController.prototype.Update = function(delta){

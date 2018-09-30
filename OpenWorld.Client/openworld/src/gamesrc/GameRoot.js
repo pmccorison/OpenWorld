@@ -1,14 +1,14 @@
-import Level from '../gamesrc/Objects/Level.js'
-import PlayerPawn from '../gamesrc/Objects/PlayerPawn.js'
-import InputHandler from '../gamesrc/Controllers/KeyHandler.js'
+import Level from '../gamesrc/objects/Level.js'
+import PlayerPawn from '../gamesrc/objects/PlayerPawn.js'
+import InputHandler from '../gamesrc/controllers/KeyHandler.js'
 import ObjectIdGenerator from '../gamesrc/ObjectIdGenerator.js'
-import PlayerController from './Controllers/PlayerController.js';
+import PlayerController from './controllers/PlayerController.js';
 
 function GameRoot(canvasId){
     var self = this;
 
     self.lastFrameTimeMs = 0;
-    self.maxFPS = 60;
+    self.maxFPS = 300;
     self.delta = 0;
     self.timestep = 1000 / 60;
     self.fps = 60;

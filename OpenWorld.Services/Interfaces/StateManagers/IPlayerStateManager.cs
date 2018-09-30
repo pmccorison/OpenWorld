@@ -27,6 +27,6 @@ namespace OpenWorld.Services.Interfaces.StateManagers
         /// </summary>
         /// <param name="playerId"></param>
         /// <param name="connectionId"></param>
-        void DisconnectPlayer(string playerId, string connectionId);
+        void DisconnectPlayer(string connectionId);
     }
 }
