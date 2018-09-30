@@ -45,7 +45,7 @@ PlayerEventChannel.prototype.Connect = function(playerId){
     
         setInterval(function(){
             self.SendDataToServer();
-        }, 100);
+        }, 20);
     });
 }
 

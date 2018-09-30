@@ -23,7 +23,7 @@ namespace OpenWorld.Services.Services.StateManagers
         public PlayerStateManager(IHubContext<PlayerEventHub> playerHub)
         {
             m_PlayerEventHub = playerHub;
-            broadcastTimer = new Timer(new TimerCallback(BroadcastMethod), null, 3000, 100);
+            broadcastTimer = new Timer(new TimerCallback(BroadcastMethod), null, 3000, 20);
         }
 
         public PlayerState ConnectPlayer(string playerId, string playerPin, string connectionId)
